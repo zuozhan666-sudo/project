@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>风景照片 - 旅·分享</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="index.html">旅·分享</a></h1>
+      <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="track.html">城市轨迹</a>
+        <a href="photos.html">风景照片</a>
+        <a href="videos.html">视频分享</a>
+        <a href="food.html">美食分享</a>
+        <a href="guides.html">游玩攻略</a>
+      </nav>
+      <button class="menu-toggle" aria-label="菜单">☰</button>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h2>风景相册</h2>
+    <p>上传小图片（演示用，文件会以 DataURL 保存到 localStorage，仅用于作业演示）。</p>
+
+    <div class="upload-row">
+      <input type="file" id="photo-input" accept="image/*" multiple />
+      <button id="export-photos">导出相册 JSON</button>
+      <button id="import-photos">从 JSON 导入（粘贴）</button>
+    </div>
+
+    <div class="gallery" id="photo-gallery">
+      <!-- 示例图片 -->
+      <img src="assets/photo1.svg" alt="示例1" />
+      <img src="assets/photo2.svg" alt="示例2" />
+      <img src="assets/photo3.svg" alt="示例3" />
+    </div>
+
+    <div id="modal" class="modal" aria-hidden="true"><img id="modal-img" src=""><button id="modal-close">✕</button></div>
+  </main>
+
+  <footer class="site-footer"><div class="container">© 2026 旅·分享</div></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="100%" height="100%" fill="#c7f0ee"/>
+  <g>
+    <circle cx="160" cy="140" r="60" fill="#fff2c2"/>
+    <rect x="120" y="220" width="560" height="180" rx="16" fill="#93d8c8"/>
+    <path d="M300 220 L380 140 L460 220 L540 140 L620 220" stroke="#7ec5b7" stroke-width="8" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="24" y="40" font-size="22" fill="#0b4e4a">示例景观 1</text>
+</svg>
