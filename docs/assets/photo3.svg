@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="100%" height="100%" fill="#fff7e6"/>
+  <g>
+    <rect x="80" y="120" width="640" height="280" rx="12" fill="#fff1da"/>
+    <path d="M120 320 Q220 220 320 300 T560 300" fill="#ffd89a"/>
+  </g>
+  <text x="24" y="40" font-size="22" fill="#7a4b1f">示例景观 3</text>
+</svg>
