@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>城市轨迹 - 旅·分享</title>
+  <title>安阳城市轨迹 - 旅·分享</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>#map{height:520px;border-radius:8px}</style>
@@ -11,7 +11,7 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <h1 class="logo"><a href="index.html">旅·分享</a></h1>
+      <h1 class="logo"><a href="index.html">旅·分享（安阳）</a></h1>
       <nav class="nav">
         <a href="index.html">首页</a>
         <a href="track.html">城市轨迹</a>
@@ -25,51 +25,50 @@
   </header>
 
   <main class="container section">
-    <h2>城市轨迹示例</h2>
-    <p>下面示例显示一段城市轨迹（使用 Leaflet + OpenStreetMap）。</p>
+    <h2>安阳城市轨迹（示例）</h2>
+    <p>起点：安阳工学院。依次经过：文峰塔、殷墟博物馆、北大街美食街、中国文字博物馆。</p>
     <div id="map"></div>
 
     <div class="section">
       <h3>轨迹事件（时间轴）</h3>
       <ol id="timeline" class="timeline"></ol>
-      <p>你可以在源码里修改 coords 数组来模拟不同轨迹，或在照片页面为站点增加图片。</p>
+      <p>位置为近似坐标，仅用于演示轨迹效果；你可以在源码中调整坐标以更精确匹配实际位置。</p>
     </div>
   </main>
 
-  <footer class="site-footer"><div class="container">© 2026 旅·分享</div></footer>
+  <footer class="site-footer"><div class="container">© 2026 旅·分享（安阳）</div></footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
   <script>
-    // 示例坐标（北京市区内一段假想轨迹）
+    // 近似坐标（安阳市及景点近似位置）
     const coords = [
-      [39.9087, 116.3975], // 天安门
-      [39.9156, 116.4039], // 王府井
-      [39.9233, 116.3906], // 北海
-      [39.9320, 116.4039], // 鼓楼
-      [39.9087, 116.3975]  // 回到起点
+      [36.1400, 114.3200], // 起点：安阳工学院（近似）
+      [36.1008, 114.3578], // 文峰塔（近似）
+      [36.1280, 114.3515], // 殷墟博物馆（近似）
+      [36.0945, 114.3410], // 北大街美食街（近似）
+      [36.1022, 114.3526], // 中国文字博物馆（近似）
+      [36.1400, 114.3200]  // 回到起点（可选）
     ];
-    // 轨迹事件
     const events = [
-      {title: '起点：天安门', desc: '清晨出发，阳光很好'},
-      {title: '王府井小吃', desc: '尝了糖葫芦'},
-      {title: '北海公园漫步', desc: '划船看风景'},
-      {title: '鼓楼附近逛巷子', desc: '拍照许多'},
-      {title: '结束', desc: '回到酒店'}
+      {title: '起点：安阳工学院', desc: '在校门集合，准备出发。'},
+      {title: '文峰塔', desc: '文峰塔是安阳的地标之一，可以爬塔眺望市区。'},
+      {title: '殷墟博物馆', desc: '殷墟是商代晚期都城遗址，历史意义重大。'},
+      {title: '北大街美食街', desc: '品尝本地小吃与特色美食。'},
+      {title: '中国文字博物馆', desc: '了解汉字起源与演变的好地方。'},
+      {title: '结束：返回安阳工学院', desc: '活动结束，返回学校。'}
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
       if (!document.getElementById('map')) return;
-      const map = L.map('map').setView(coords[0], 13);
+      const map = L.map('map').setView([36.11, 114.34], 13);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
       }).addTo(map);
 
-      // polyline
       const poly = L.polyline(coords, {color:'#0ea5a4'}).addTo(map);
       map.fitBounds(poly.getBounds(), {padding:[20,20]});
 
-      // markers + timeline
       const timelineEl = document.getElementById('timeline');
       events.forEach((e,i)=>{
         const m = L.marker(coords[i]).addTo(map).bindPopup(`<b>${e.title}</b><div>${e.desc}</div>`);
