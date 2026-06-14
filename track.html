@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>城市轨迹 - 旅·分享</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>#map{height:520px;border-radius:8px}</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="index.html">旅·分享</a></h1>
+      <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="track.html">城市轨迹</a>
+        <a href="photos.html">风景照片</a>
+        <a href="videos.html">视频分享</a>
+        <a href="food.html">美食分享</a>
+        <a href="guides.html">游玩攻略</a>
+      </nav>
+      <button class="menu-toggle" aria-label="菜单">☰</button>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h2>城市轨迹示例</h2>
+    <p>下面示例显示一段城市轨迹（使用 Leaflet + OpenStreetMap）。</p>
+    <div id="map"></div>
+
+    <div class="section">
+      <h3>轨迹事件（时间轴）</h3>
+      <ol id="timeline" class="timeline"></ol>
+      <p>你可以在源码里修改 coords 数组来模拟不同轨迹，或在照片页面为站点增加图片。</p>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container">© 2026 旅·分享</div></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // 示例坐标（北京市区内一段假想轨迹）
+    const coords = [
+      [39.9087, 116.3975], // 天安门
+      [39.9156, 116.4039], // 王府井
+      [39.9233, 116.3906], // 北海
+      [39.9320, 116.4039], // 鼓楼
+      [39.9087, 116.3975]  // 回到起点
+    ];
+    // 轨迹事件
+    const events = [
+      {title: '起点：天安门', desc: '清晨出发，阳光很好'},
+      {title: '王府井小吃', desc: '尝了糖葫芦'},
+      {title: '北海公园漫步', desc: '划船看风景'},
+      {title: '鼓楼附近逛巷子', desc: '拍照许多'},
+      {title: '结束', desc: '回到酒店'}
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!document.getElementById('map')) return;
+      const map = L.map('map').setView(coords[0], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+      }).addTo(map);
+
+      // polyline
+      const poly = L.polyline(coords, {color:'#0ea5a4'}).addTo(map);
+      map.fitBounds(poly.getBounds(), {padding:[20,20]});
+
+      // markers + timeline
+      const timelineEl = document.getElementById('timeline');
+      events.forEach((e,i)=>{
+        const m = L.marker(coords[i]).addTo(map).bindPopup(`<b>${e.title}</b><div>${e.desc}</div>`);
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${e.title}</strong><p>${e.desc}</p>`;
+        li.addEventListener('click', ()=>{ map.panTo(coords[i]); m.openPopup(); });
+        timelineEl.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>

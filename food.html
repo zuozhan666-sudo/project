@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>美食分享 - 旅·分享</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="index.html">旅·分享</a></h1>
+      <nav class="nav">
+        <a href="index.html">首页</a>
+        <a href="track.html">城市轨迹</a>
+        <a href="photos.html">风景照片</a>
+        <a href="videos.html">视频分享</a>
+        <a href="food.html">美食分享</a>
+        <a href="guides.html">游玩攻略</a>
+      </nav>
+      <button class="menu-toggle" aria-label="菜单">☰</button>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h2>美食分享</h2>
+
+    <form id="food-form" class="card form-card">
+      <input type="text" id="food-name" placeholder="美食名称" required />
+      <input type="text" id="food-place" placeholder="地点" />
+      <input type="text" id="food-img" placeholder="示例图片路径或 DataURL，留空使用默认图" />
+      <textarea id="food-desc" placeholder="描述"></textarea>
+      <button type="submit">发布美食</button>
+    </form>
+
+    <div id="food-list" class="grid"></div>
+  </main>
+
+  <footer class="site-footer"><div class="container">© 2026 旅·分享</div></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
